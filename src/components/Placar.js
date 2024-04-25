@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import '../App.css'
+// import '../App.css'
 
 class Placar extends Component {
     render() {
+        
         const { placar, onProximaPergunta } = this.props;
 
         return (

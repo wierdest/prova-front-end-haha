@@ -8,15 +8,32 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+
+    const listaP = databasePerguntas;
+    listaP.forEach(element => {
+      element.options = this.embaralharArray(element.options);
+    });
+
+
     this.state = {
-      databasePerguntas: databasePerguntas,
+      databasePerguntas: this.embaralharArray(databasePerguntas),
       perguntaAtual: 0,
       opcaoSelecionada: "",
       placar: 0,
       terminou: false
     }
+
   }
 
+  embaralharArray = (array) => {
+    for(let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+
+  }
+  
   lidaComTrocaOpcao = (e) => {
     this.setState({opcaoSelecionada: e.target.value});
   };
@@ -26,6 +43,7 @@ class App extends Component {
     this.confereResposta();
     this.lidaComProximaPergunta();
   }
+
   confereResposta = () => {
     const { databasePerguntas, perguntaAtual, opcaoSelecionada, placar } = this.state;
     if(opcaoSelecionada === databasePerguntas[perguntaAtual].answer) {
@@ -49,6 +67,7 @@ class App extends Component {
   };
 
   render() {
+    
     const { databasePerguntas, perguntaAtual, opcaoSelecionada, placar, terminou } = this.state;
 
     return (
@@ -58,6 +77,7 @@ class App extends Component {
 
           <Pergunta
             pergunta={databasePerguntas[perguntaAtual]}
+            perguntaAtual={perguntaAtual + 1}
             opcaoSelecionada={opcaoSelecionada}
             onTrocaOpcao={this.lidaComTrocaOpcao}
             onEnviar={this.lidaComEnviar}

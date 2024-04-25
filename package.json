@@ -1,7 +1,7 @@
 {
   "name": "tinytale",
   "version": "0.1.0",
-  "homepage": "https://wierdest.github.io/prova-front-end-haha/",
+  "homepage": "https://wierdest.github.io/prova-front-end-haha",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
